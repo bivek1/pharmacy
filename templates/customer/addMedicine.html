@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+   
+<style>
+    label{
+        margin-top: 10px;
+    }
+</style>
+<div class="mt-5 p-0 ">
+                   
+    <div class="row p-0 m-0 m-auto">
+        {% for i in messages  %}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong></strong> {{i}}
+       
+      </div>
+    {% endfor %}
+       
+        <div class="col-12 col-lg-8 m-auto p-4 mb-4" style="border: 1px solid black;">
+            <div class="d-flex justify-content-between mb-4">
+                <h4>Add Medicine</h4>
+                <a href="{%url 'system:logout'%}">
+                    <button>
+                        <i class="fa fa-user"></i>
+                        Logout
+                    </button>
+                   </a>
+             </div>
+             <hr>
+
+            <form action="" method="post">
+                {{form}}
+                {% csrf_token %}
+                <button class="btn btn-danger mt-3" type="submit">
+                    Add Medicine
+                </button>
+            </form>
+        </div>
+
+        <div class="container">
+            <h2>Medicine List</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Generic Name</th>
+                            <th>MG Dose</th>
+                            <th>Expiry Date</th>
+                            <th>Manufacture Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for medicine in medicine %}
+                        <tr>
+                            <td>{{ medicine.name }}</td>
+                            <td>{{ medicine.generic_name }}</td>
+                            <td>{{ medicine.mg_dose }}</td>
+                            <td>{{ medicine.exipiry_date }}</td>
+                            <td>{{ medicine.manufacture_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+       
+        <hr>
+        
+    </div>
+</div>
+
+
+
+{% endblock content %}

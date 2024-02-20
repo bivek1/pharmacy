@@ -1,0 +1,82 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Pharmacy System
+        {% endblock title %}
+
+    </title>
+    <link rel="stylesheet" href="{%static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{%static 'css/font-awesome.css'%}">
+    <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand p-2" href="#">
+            <img src="{%static 'images/logo.jpeg'%}" style="height: auto;width:20%">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 my-auto">
+
+
+            <li class="nav-item p-2 my-auto">
+                
+                    <h4>
+                        Pharmacy System
+                    </h4>
+            </li>
+
+
+           
+        </ul>
+        </div>
+
+    </div>
+    </nav>
+
+    {% block content %}
+   
+
+
+    {% endblock content %}
+    <div class="container-fluid bg-light m-0 mt-5">
+        <div class="row m-0 mt-5">
+            <p class="mt-4">
+                1. Apple Fitness+ requires iPhone 8 or later, or Apple Watch Series 3 or later paired with iPhone 6s or later. New subscribers only. $9.99/month after trial. Plan automatically renews until cancelled. Terms apply.
+            </p>
+            <p>
+                2. Trade-in values will vary based on the condition, year, and configuration of your eligible trade-in device. Not all devices are eligible for credit. You must be at least 18 years old to be eligible to trade in for credit or for an Apple Gift Card. Trade-in value may be applied toward qualifying new device purchase, or added to an Apple Gift Card. Actual value awarded is based on receipt of a qualifying device matching the description provided when estimate was made. Sales tax may be assessed on full value of a new device purchase. In-store trade-in requires presentation of a valid photo ID (local law may require saving this information). Offer may not be available in all stores, and may vary between in-store and online trade-in. Some stores may have additional requirements. Apple or its trade-in partners reserve the right to refuse or limit quantity of any trade-in transaction for any reason. More details are available from Apple’s trade-in partner for trade-in and recycling of eligible devices. Restrictions and limitations may apply.
+            </p>
+            <p>
+                Available in the U.S. on apple.com, in the Apple Store app, and at Apple Stores.
+            </p>
+            <p>
+                To access and use all Apple Card features and products available only to Apple Card users, you must add Apple Card to Wallet on an iPhone or iPad that supports and has the latest version of iOS or iPadOS. Apple Card is subject to credit approval, available only for qualifying applicants in the United States, and issued by Goldman Sachs Bank USA, Salt Lake City Branch.
+            </p>
+            <p>
+                If you reside in the U.S. territories, please call Goldman Sachs at 877-255-5923 with questions about Apple Card.
+            </p>
+        </div>
+     
+       
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <script src="{%static 'js/boostrap.js'%}"></script>
+    <script src="{%static 'js/font-awesome.js'%}"></script>
+
+    
+</body>
+</html>

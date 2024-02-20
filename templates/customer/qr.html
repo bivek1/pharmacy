@@ -1,0 +1,89 @@
+
+
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid p-0 m-0">
+    <div class="row p-0 m-0">
+
+        <div class="col-md-12 col-lg-12">
+            <div class="mt-5">
+                <h2 class="text-center">
+                    GENERATE
+                    <span class="bg-success text-light p-2">
+                        QR CODE
+                    </span>
+                         
+                  
+                    
+                </h2>
+                <p class="text-center p-0 mt-3">
+                    <b>
+                        <small class="text-dark mt-2">
+                            Generate QR code with one click....
+                        </small>
+                    </b>
+                    
+                </p>
+                
+                <div class="function-box mt-3 pb-5 p-3">
+                   
+                    
+                    <div class="writebox mt-3 p-2">
+                        
+                          
+                        <p>Enter your text or url on the following box...</p>
+                        <textarea type="text" class="form-control" name="write" id="wash" placeholder="Enter your text or url..." style="font-size:30px"></textarea>
+                        
+                        <button class="btn btn-danger mt-3" onclick="sendqrData();">
+                            GENERATE QR
+                        </button>
+                        
+                        <div class="qrBox text-center">
+                            <img id="imageElement" src="" alt="Image" style="display: none;">
+                            <a href="" id="download" style="display: none;" class="text-center" download="">
+                                <button class="btn btn-sm btn-success d-block mt-3 m-auto">
+                                    <i class="fa fa-download"></i> Download
+                                </button>
+                            </a>
+                        </div>
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function sendqrData(){
+        text = $('#wash').val()
+        console.log(text)
+
+        $.ajax({
+            type:'POST',
+            url:'{%url "system:generateQR"%}',
+            data:{
+                'csrfmiddlewaretoken': '{{ csrf_token }}', // Include the CSRF token for security
+                'text':text
+            }, success:function(response){
+                console.log(response.path)
+                var imageElement = document.getElementById("imageElement");
+               
+                
+                imageElement.style.display = ""
+                imageElement.src = response.path;
+                btn = document.getElementById('download')
+                btn.href = response.path
+                
+                btn.style.display = ""
+              
+               
+            }
+        })
+    }
+</script>
+{% endblock content %}
+    
