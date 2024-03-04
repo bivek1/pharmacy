@@ -33,6 +33,16 @@ def Dashboard(request):
     return render(request, "customer/dashboard.html")
 
 
+def Search(request):
+    q = request.GET.get('search')
+    print(q)
+    med = Medicine.objects.filter(name__icontains = q)
+
+    dist = {
+        'med':med
+    }
+    return render(request, "customer/search.html", dist)
+
 @login_required
 def AddMedicine(request):
     form = MedicineForm(request.POST or None)
@@ -48,10 +58,38 @@ def AddMedicine(request):
         if form.is_valid():
             form.save()
             messages.success(request, "Successfully added medicine")
+            return HttpResponseRedirect(reverse('system:add-medicine'))
         else:
             messages.success(request, "Something went wrong")
     return render(request, "customer/addMedicine.html", dist)
 
+
+@login_required
+def updateMedicine(request, id):
+    med = Medicine.objects.get(id = id)
+
+    form = MedicineForm(instance= med)
+
+    dist = {
+        'form':form
+    }
+
+    if request.method == 'POST':
+        form = MedicineForm(request.POST, instance= med)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Successfully updated medicine")
+            return HttpResponseRedirect(reverse('system:add-medicine'))
+        else:
+            messages.success(request, "Something went wrong")
+    
+    return render(request, "customer/editMedicine.html", dist)
+
+def deleteMedicine(request, id):
+    med = Medicine.objects.get(id = id)
+    med.delete()
+    messages.success(request, "Successfully deleted medicine")
+    return HttpResponseRedirect(reverse('system:add-medicine'))
 
 def qrView(request):
     return render(request, "customer/qr.html")

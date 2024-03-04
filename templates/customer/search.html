@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+   
+<style>
+    label{
+        margin-top: 10px;
+    }
+</style>
+<div class="mt-5 p-3">
+                   
+    <div class="row m-auto">
+        {% for i in messages  %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong></strong> {{i}}
+            
+            </div>
+        {% endfor %}
+       
+        <h4>Searched Medicine</h4>
+
+        <div class="row">
+            
+            {% for i in med  %}
+                    <div class="col-12 col-lg-4 mt-3">
+                        <div class="card p-2">
+                            <h5 class="text-primary">
+                                {{i.name}}
+                            </h5>
+                            <div class="alert alert-primary" role="alert">
+                                LOCATION: {{i.location}}
+                            </div>
+                            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal{{i.id}}">
+                                Add to order
+                            </button>
+
+                            <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                                        Add to order
+                                      </h1>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                    <p>Available Stock : {{i.stock}}</p>
+                                    <form action="" method="post">
+                                        <input type="number" class="form-control" name="stock"  min = 0 max = {{i.stock}} placeholder="Add order quantity">
+                                
+                                        <button class="mt-3 btn btn-success" type="submit" class="btn btn-primary">Add to order</button>
+                                       
+                                    </form>
+                                     
+                                   
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+
+                       
+
+                    </div>
+            {% endfor %}
+                
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
